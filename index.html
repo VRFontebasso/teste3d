@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagem 3D Interativa 360 Graus</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.container {
+    perspective: 1000px; /* Define a profundidade da perspectiva */
+}
+
+.image-3d {
+    width: 300px;
+    height: auto;
+    transition: transform 0.1s; /* Transição rápida para suavidade */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d; /* Preserve o efeito 3D */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="R.png"Imagem 3D" class="image-3d">
+    </div>
+    <script>
+        const container = document.querySelector('.container');
+const image = document.querySelector('.image-3d');
+
+container.addEventListener('mousemove', (e) => {
+    const xAxis = ((e.pageX / window.innerWidth) * 360) - 180;
+    const yAxis = -((e.pageY / window.innerHeight) * 360) + 180;
+    image.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+});
+
+container.addEventListener('mouseleave', () => {
+    image.style.transform = 'rotateY(0deg) rotateX(0deg)';
+});
+
+    </script>
+</body>
+</html>
